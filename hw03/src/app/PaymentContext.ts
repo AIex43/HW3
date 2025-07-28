@@ -1,6 +1,12 @@
 import { PaymentProviderFactory } from "../core/PaymentProviderFactory";
-import { PaymentProvider } from "../core/PaymentProvider";
 
 export class PaymentContext {
-  // TODO: Implement the PaymentContext class
+  constructor(private factory: PaymentProviderFactory) {}
+
+  processPayment(amount: number): void {
+    const provider = this.factory.createPaymentProvider();
+    const txId = provider.authorize(amount);
+    provider.capture(txId);
+    provider.refund(txId);
+  }
 }
