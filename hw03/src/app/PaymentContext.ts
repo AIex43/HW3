@@ -5,7 +5,7 @@ export class PaymentContext {
 
   processPayment(amount: number): void {
     const provider = this.factory.createPaymentProvider();
-    const txId = provider.authorize(amount); // ✅ тепер тип string
+    const txId = provider.authorize(amount); 
     provider.capture(txId);
     provider.refund(txId);
   }
